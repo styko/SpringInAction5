@@ -15,7 +15,7 @@ import tacos.model.Order;
 import tacos.model.Taco;
 
 @Repository
-public class JdbcOrderRepository implements OrderRepository {
+public class JdbcOrderRepository /*implements OrderRepository*/ {
 
 	private SimpleJdbcInsert orderInserter;
 	private SimpleJdbcInsert orderTacoInserter;
@@ -28,7 +28,7 @@ public class JdbcOrderRepository implements OrderRepository {
 		this.objectMapper = new ObjectMapper();
 	}
 
-	@Override
+	/*@Override*/
 	public Order save(Order order) {
 		order.setPlacedAt(new Date());
 		long orderId = saveOrderDetails(order);

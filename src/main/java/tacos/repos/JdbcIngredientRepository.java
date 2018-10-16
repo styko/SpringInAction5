@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import tacos.model.Ingredient;
 
 @Repository
-public class JdbcIngredientRepository implements IngredientRepository {
+public class JdbcIngredientRepository /*implements IngredientRepository*/ {
 
 	private JdbcTemplate jdbc;
 
@@ -19,12 +19,12 @@ public class JdbcIngredientRepository implements IngredientRepository {
 		this.jdbc = jdbc;
 	}
 
-	@Override
+	/*@Override*/
 	public Iterable<Ingredient> findAll() {
 		return jdbc.query("select id, name, type from Ingredient", this::mapRowToIngredient);
 	}
 
-	@Override
+	/*@Override*/
 	public Ingredient findOne(String id) {
 		return jdbc.queryForObject("select id, name, type from Ingredient where id=?", this::mapRowToIngredient, id);
 	}
@@ -33,7 +33,7 @@ public class JdbcIngredientRepository implements IngredientRepository {
 		return new Ingredient(rs.getString("id"), rs.getString("name"), Ingredient.Type.valueOf(rs.getString("type")));
 	}
 
-	@Override
+	/*@Override*/
 	public Ingredient save(Ingredient ingredient) {
 		jdbc.update("insert into Ingredient (id, name, type) values (?, ?, ?)",
 				ingredient.getId(),

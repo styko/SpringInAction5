@@ -13,7 +13,7 @@ import tacos.model.Ingredient;
 import tacos.model.Taco;
 
 @Repository
-public class JdbcTacoRepository implements TacoRepository {
+public class JdbcTacoRepository /*implements TacoRepository*/ {
 
 	private JdbcTemplate jdbc;
 	private SimpleJdbcInsert tacoInserter;
@@ -24,7 +24,7 @@ public class JdbcTacoRepository implements TacoRepository {
 		this.tacoInserter = new SimpleJdbcInsert(jdbc).withTableName("Taco").usingGeneratedKeyColumns("id");
 	}
 
-	@Override
+	/*@Override*/
 	public Taco save(Taco taco) {
 		long tacoId = saveTacoInfo(taco);
 		taco.setId(tacoId);
